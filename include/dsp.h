@@ -34,6 +34,7 @@ int dsp_window_blackman(dsp_vector_t* vector);
 int dsp_dft(const dsp_vector_t* input, dsp_complex_numbers* out, size_t size);
 dsp_complex_numbers* dsp_vector_fft(const dsp_complex_numbers* data, size_t size);
 int dsp_ifft(dsp_complex_numbers* input, dsp_complex_numbers* out, size_t size);
+int dsp_idft(const dsp_vector_t* input, dsp_complex_numbers* out, size_t n);
 
 int dsp_spectrum(const dsp_vector_t* signal, dsp_vector_t* magnitude); // |FFT|
 int dsp_spectrogram(const dsp_vector_t* signal, size_t window_size, size_t hop, float** out);
