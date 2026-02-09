@@ -1,4 +1,4 @@
-#define _USE_MATH_DEFINES // Нужно чтобы использовать константы math.h
+#define _GNU_SOURCE // Нужно чтобы использовать константы math.h
 #include <dsp.h>
 #include <math.h>
 int dsp_window_hann(dsp_vector_t* vector){
