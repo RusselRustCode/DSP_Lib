@@ -1,19 +1,22 @@
 {
     "configurations": [
         {
-            "name": "Win32",
-            "includePath": [
-                "${workspaceFolder}/**"
-            ],
-            "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE"
-            ],
-            "compilerPath": "D:\\Users\\Хозяин\\w64devkit\\bin\\gcc.exe",
+            "name": "RISC-V RVV (Clang + GCC sysroot)",
+            "compilerPath": "/usr/bin/clang-15",
             "cStandard": "c17",
-            "cppStandard": "gnu++17",
-            "intelliSenseMode": "windows-gcc-x64"
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-clang-x64",
+            "compilerArgs": [
+                "--target=riscv64-linux-gnu",
+                "-march=rv64gcv",
+                "-mabi=lp64d",
+                "--sysroot=/usr/riscv64-linux-gnu"
+            ],
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/riscv64-linux-gnu/include",
+                "/usr/lib/gcc/riscv64-linux-gnu/*/include"
+            ]
         }
     ],
     "version": 4
