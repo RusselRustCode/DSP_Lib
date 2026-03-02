@@ -1,23 +1,27 @@
-# ==============================
-# Настройки проекта
-# ==============================
-CC      = gcc
-CFLAGS  = -std=c99 -Wextra -O2 -Iinclude
-TARGET  = dsp_demo.exe
+CC      = clang-15 # Компилятор будет Clang(LLVM)
+LD      = riscv64-linux-gnu-gcc #Линкер будет GCC
 
-# Источники: все .c в src/ + примеры (ли нужно)
+# Флаги компиляции (Clang)
+CFLAGS  = -std=c99 -O2 -Iinclude \
+          --target=riscv64-linux-gnu \
+          -march=rv64gcv \
+          -mabi=lp64d \
+          --sysroot=/usr/riscv64-linux-gnu
+
+# Флаги линковки (GCC)
+LDFLAGS = -march=rv64gcv -mabi=lp64d -static
+
+TARGET  = dsp_demo
+
 SRC_DIR = src
 EXAMPLES_DIR = examples
 
-# Собираем все .c из src и examples (можно убрать examples, если не нужен)
 SRCS    = $(wildcard $(SRC_DIR)/*.c) $(wildcard $(EXAMPLES_DIR)/*.c)
 OBJS    = $(SRCS:.c=.o)
 
-# ==============================
-# Правила
-# ==============================
+
 $(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(LD) $(LDFLAGS) -o $@ $^ -lm
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
